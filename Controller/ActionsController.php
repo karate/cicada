@@ -112,7 +112,6 @@ class ActionsController extends AppController {
 			),
 			'order' => array('Action.date DESC')
 		);
-
 		if (!is_null($account)) {
 			$query['conditions'] = array('Action.account' => $account);
 		}
