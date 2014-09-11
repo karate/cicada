@@ -1,3 +1,7 @@
+	<?php if (isset($account)): ?>
+		<h2><?php echo $account['description']; ?></h2>
+	<?php endif; ?>
+
 <?php if (count($actions) == 0) : ?>
 	<div class="error">Sorry, no transactions :(</div>
 <?php else: ?>
@@ -29,6 +33,11 @@
 		</tr>
 
 	<?php endforeach; ?>
+	
+	<?php if (isset($account)): ?>
+		<tr><th>Total</th><th><?php echo $account['description']; ?></th><th><?php echo $account['balance']; ?><th><th colspan=2>&nbsp;</th></tr>
+	<?php endif; ?>
+
 	</table>
 
 <?php endif; ?>
