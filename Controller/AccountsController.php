@@ -59,21 +59,23 @@ class AccountsController extends AppController {
 	    }
 	}
 
-	public function view($id) {
-		if (!$id) {
+	public function view($id = NULL) {
+		/*if (!$id) {
         	throw new NotFoundException(__('Invalid account'));
-        }
+        }*/
 
-        if (is_null($id)) {
-        	$account = $this->Account->find('all');
+        if (!is_null($id)) {
+			$account = $this->Account->findById($id);
+			if (!$account) {
+	        	throw new NotFoundException(__('Invalid account'));
+	        }
         }
         else {
-			$account = $this->Account->findById($id);
+        	$accounts = $this->Account->find('all');
+        	$this->set('data', $accounts);
+        	$this->render('index');
         }
 
-		if (!$account) {
-        	throw new NotFoundException(__('Invalid account'));
-        }
 
 		$this->set('data', $account['Account']);
 	}

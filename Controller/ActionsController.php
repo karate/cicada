@@ -50,7 +50,7 @@ class ActionsController extends AppController {
 
 	    	// add new transaction
 	    	$this->_create_transaction($this->request->data);
-	    	
+
 	    }
 
 	    if (!$this->request->data) {
@@ -65,7 +65,7 @@ class ActionsController extends AppController {
 
 	public function view($account = NULL) {
 		$query = array(
-			'fields' => array('Types.id', 'Types.description', 'Accounts.description', 'Action.*'),
+			'fields' => array('Types.id', 'Types.description', 'Accounts.description', 'Accounts.balance', 'Action.*'),
 			'joins' => array(
 			    array(
 			        'table' => 'action_types',
@@ -84,6 +84,9 @@ class ActionsController extends AppController {
 		);
 		if (!is_null($account)) {
 			$query['conditions'] = array('Action.account' => $account);
+			$this->loadModel('Account');
+			$account = $this->Account->find('first', array('conditions' => array('Account.id' => $account)));
+			$this->set('account', $account['Account']);
 		}
 
 		$actions = $this->Action->find('all', $query);

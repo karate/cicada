@@ -1,5 +1,5 @@
 <?php
-	//debug($data);
+	$total_balance = 0;
 ?>
 
 <table>
@@ -9,6 +9,7 @@
 	<th colspan=2>Actions</th>
 </tr>
 <?php foreach ($data as $account): ?>
+	<?php $total_balance += $account['Account']['balance']; ?>
 	<tr>
 		<td>
 			<?php 
@@ -27,8 +28,12 @@
 			 ?>
 		 </td>
 	</tr>
-
 <?php endforeach; ?>
+	<tr>
+		<th>Total</th>
+		<th><?php echo $total_balance; ?></th>
+		<th colspan=2>&nbsp;</th>
+	</tr>
 </table>
 
 <?php 
