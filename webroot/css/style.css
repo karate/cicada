@@ -1,14 +1,14 @@
-nav.main {
+nav.main-menu {
 	background-color: rgba(221, 221, 221, 1);
 	padding: 7px;
 	border-radius: 11px;
 }
 
-nav.main ul {
+nav.main-menu ul {
 	list-style: none;
 }
 
-nav.main ul li {
+nav.main-menu ul li {
 	display: inline-block;
 }
 

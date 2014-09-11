@@ -1,4 +1,4 @@
-<nav class="main">
+<nav class="main-menu">
 <ul>
 	<li>
 		<?php echo $this->Html->link('Accounts', '/accounts'); ?>
