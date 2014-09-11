@@ -6,7 +6,7 @@
 	<div class="error">Sorry, no transactions :(</div>
 <?php else: ?>
 
-	<table>
+	<table class="table table-hover">
 	<tr>
 		<th>Type</th>
 		<th>Account</th>
@@ -20,13 +20,13 @@
 			<td><?php echo $this->Html->link($action['Accounts']['description'], '/accounts/view/' . $action['Action']['account']); ?></td>
 			<td class="<?php echo ($action['Action']['ammount'] < 0) ? 'red' : ''; ?>"><?php echo $action['Action']['ammount']; ?></td>
 			<td><?php echo $this->Time->format('l, F j', $action['Action']['date']); ?></td>
-			<td><?php echo $this->Html->link('edit', array('action' => 'edit', $action['Action']['id'])); ?></td>
+			<td><?php echo $this->Html->link('edit', array('action' => 'edit', $action['Action']['id']), array('class' => 'glyphicon glyphicon-pencil btn btn-warning btn-xs' )); ?></td>
 			<td>
 				<?php 
 					echo $this->Form->postLink(
 		                'Delete',
 		                array('action' => 'delete', $action['Action']['id']),
-		                array('confirm' => 'Are you sure you want to delete this transaction?')
+		                array('confirm' => 'Are you sure you want to delete this transaction?', 'class' => 'glyphicon glyphicon-remove btn btn-danger btn-xs')
 		            );
 	            ?>
 	        </td>
@@ -45,6 +45,7 @@
 <?php 
 	echo $this->Html->link(
 	    'New Transaction',
-	    array('controller' => 'actions', 'action' => 'add')
+	    array('controller' => 'actions', 'action' => 'add'),
+	    array('class' => 'glyphicon glyphicon-plus btn btn-default')
 	);
 ?>

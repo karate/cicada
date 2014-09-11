@@ -2,7 +2,7 @@
 	$total_balance = 0;
 ?>
 
-<table>
+<table class="table table-hover">
 <tr>
 	<th>Accounts (<?php echo count($data); ?>)</th>
 	<th>Balance</th>
@@ -17,13 +17,13 @@
 			?>
 		</td>
 		<td><?php echo $account['Account']['balance']; ?></td>
-		<td><?php echo $this->Html->link('edit', array('action' => 'edit', $account['Account']['id'])); ?></td>
+		<td><?php echo $this->Html->link('edit', array('action' => 'edit', $account['Account']['id']), array('class' => 'glyphicon glyphicon-pencil btn btn-warning btn-xs' )); ?></td>
 		<td>
 			<?php 
 				 echo $this->Form->postLink(
-                    'Delete',
+                    'delete',
                     array('action' => 'delete', $account['Account']['id']),
-                    array('confirm' => 'Are you sure you want to delete '.$account['Account']['description'].'?')
+                    array('confirm' => 'Are you sure you want to delete '.$account['Account']['description'].'?', 'class' => 'glyphicon glyphicon-remove btn btn-danger btn-xs')
                 );
 			 ?>
 		 </td>
@@ -39,6 +39,7 @@
 <?php 
 	echo $this->Html->link(
 	    'Add Account',
-	    array('controller' => 'accounts', 'action' => 'add')
+	    array('controller' => 'accounts', 'action' => 'add'), 
+	    array('class' => 'glyphicon glyphicon-plus btn btn-default')
 	);
 ?>
