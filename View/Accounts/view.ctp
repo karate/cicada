@@ -12,6 +12,11 @@
 
 <?php
 	echo $this->Html->link(
+		'Edit account',
+		array(
+			'action' => 'edit', $data['id']));
+
+	echo $this->Html->link(
 		'View Transactions', 
 		array(
 			'controller' => 'actions', 
