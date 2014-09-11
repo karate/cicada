@@ -15,7 +15,7 @@
 			<td><?php echo $action['Types']['description']; ?></td>
 			<td><?php echo $this->Html->link($action['Accounts']['description'], '/accounts/view/' . $action['Action']['account']); ?></td>
 			<td class="<?php echo ($action['Action']['ammount'] < 0) ? 'red' : ''; ?>"><?php echo $action['Action']['ammount']; ?></td>
-			<td><?php echo $this->Time->format('F j, Y H:i', $action['Action']['date']); ?></td>
+			<td><?php echo $this->Time->format('l, F j', $action['Action']['date']); ?></td>
 			<td><?php echo $this->Html->link('edit', array('action' => 'edit', $action['Action']['id'])); ?></td>
 			<td>
 				<?php 
