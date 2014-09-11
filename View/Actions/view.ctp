@@ -8,7 +8,7 @@
 		<th>Account</th>
 		<th>Ammount</th>
 		<th>Date / Time</th>
-		<th colspan=2>actions</th>
+		<th colspan=2>Actions</th>
 	</tr>
 	<?php foreach ($actions as $action): ?>
 		<tr>
