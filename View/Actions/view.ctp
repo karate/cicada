@@ -21,7 +21,7 @@
 				<?php 
 					echo $this->Form->postLink(
 		                'Delete',
-		                array('action' => 'delete', $action['Action']['id'], $action['Action']['account'], $action['Action']['ammount']),
+		                array('action' => 'delete', $action['Action']['id']),
 		                array('confirm' => 'Are you sure you want to delete this transaction?')
 		            );
 	            ?>
