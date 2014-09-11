@@ -48,20 +48,28 @@ class ActionsController extends AppController {
 	        throw new MethodNotAllowedException();
 	    }
 
+    	// If transaction was deleted successfully, update account balance
 	    if ($this->Action->delete($id)) {
+
 	    	$this->loadModel('Account');
-	    	$this->Account->id = $id;
-	    	$account = $this->Account->find('first', array('conditions' => array('id' => $id)));
+	    	$account = $this->Account->find('first', array('conditions' => array('Account.id' => $account)));
+
 	    	$balance = $account['Account']['balance'];
 
-	    	$this->Account->saveField('balance', $balance + $ammount);
+	    	// This works even when deleting withdraws ($ammount is negative)
+	    	$updated_balance = $balance - $ammount;
+	    	
+	    	// Update account with new balance
+	    	$this->Account->id = $account;
+	    	$this->Account->saveField('balance', $updated_balance);
 
+	    	$account_name = $account['Account']['description'];
 	        $this->Session->setFlash(
-	            __('Transaction has been deleted.')
+	            __("Transaction has been deleted. New balance of $account_name is: $updated_balance")
 	        );
-	        return $this->redirect(array('action' => 'index'));
-	    }
 
+	    }
+	    return $this->redirect(array('action' => 'index'));
 	}
 
 	public function edit($id = NULL) {
