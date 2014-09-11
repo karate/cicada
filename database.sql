@@ -44,3 +44,11 @@ CREATE TABLE IF NOT EXISTS `action_types` (
   `description` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `action_types`
+--
+
+INSERT INTO `action_types` (`id`, `description`) VALUES
+(1, 'Ανάληψη'),
+(2, 'Κατάθεση');
