@@ -5,6 +5,8 @@
 <table>
 <tr>
 	<th>Accounts (<?php echo count($data); ?>)</th>
+	<th>Balance</th>
+	<th colspan=2>Actions</th>
 </tr>
 <?php foreach ($data as $account): ?>
 	<tr>
