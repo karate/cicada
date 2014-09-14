@@ -26,7 +26,15 @@ class AccountsController extends AppController {
 	        throw new MethodNotAllowedException();
 	    }
 
+    	// Delete all transactions assosiated with this account.
+    	$this->loadModel('Action');
+    	$actions = $this->Action->find('all', array('conditions' => array('Action.account' => $id)));
+    	foreach ($actions as $action) {
+    		$this->Action->delete($action['Action']['id']);
+    	}
+
 	    if ($this->Account->delete($id)) {
+
 	        $this->Session->setFlash(
 	            __('Account has been deleted.')
 	        );
