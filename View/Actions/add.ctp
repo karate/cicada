@@ -1,6 +1,6 @@
 <h1>Add Transaction</h1>
 <?php
-	echo $this->Form->create('Action', array('class' => 'form form-horizontal'));
+	echo $this->Form->create('Action', array('class' => 'form'));
 
 	echo $this->Form->input(
 		'type', 

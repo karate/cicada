@@ -1,6 +1,6 @@
 <h1>Edit Account</h1>
 <?php
-	echo $this->Form->create('Account', array('class' => 'form form-horizontal'));
+	echo $this->Form->create('Account', array('class' => 'form'));
 	echo $this->Form->input(
 		'description', 
 		array(
