@@ -51,5 +51,9 @@ CREATE TABLE IF NOT EXISTS `action_types` (
 
 INSERT INTO `action_types` (`id`, `description`) VALUES
 (1, 'Ανάληψη'),
+<<<<<<< HEAD
 (2, 'Κατάθεση');
 (3, 'Διόρθωση');
+=======
+(2, 'Κατάθεση');
+>>>>>>> d306149d8cd0f6837b711844470b8ccb0ddf871a

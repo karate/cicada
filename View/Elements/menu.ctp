@@ -16,7 +16,15 @@
 			<ul class="nav navbar-nav">
 				<li><?php echo $this->Html->link('Accounts', '/accounts'); ?></li>
 				<li><?php echo $this->Html->link('Transactions', '/actions'); ?></li>
+<<<<<<< HEAD
 			</ul>
 		</div>
 	</div>
 </nav>
+=======
+				<li><?php echo $this->Html->link('Information', '/stats'); ?></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+>>>>>>> d306149d8cd0f6837b711844470b8ccb0ddf871a
