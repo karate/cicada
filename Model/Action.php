@@ -12,7 +12,7 @@ class Action extends AppModel {
             	'rule' => 'notEmpty'
             ),
             'isdate' => array (
-            	'rule' => 'date',
+            	'rule' => 'datetime',
             	'message' => 'Enter a valid date'
             )
         )
