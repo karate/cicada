@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `iban` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `balance` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `actions` (
   `ammount` decimal(10,0) NOT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin
 
 -- --------------------------------------------------------
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `action_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `action_types`
