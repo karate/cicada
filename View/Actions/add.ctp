@@ -36,7 +36,8 @@
 			'class' => 'form-control datepicker',
 			'div' => array('class' => 'form-group'), 
 			'type' => 'text', 
-			'label' => false
+			'label' => false,
+			'default' => date('Y-m-d H:i:s', time())
 		)
 	);
 
