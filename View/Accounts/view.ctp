@@ -21,14 +21,14 @@
 
 <?php
 	echo $this->Html->link(
-		'Edit account',
+		'<span class="glyphicon glyphicon-pencil"></span> Edit account',
 		array('action' => 'edit', $data['id']),
-		array('class' => 'glyphicon glyphicon-pencil btn btn-default'));
+		array('class' => 'btn btn-default', 'escape' => false));
 
 	echo $this->Html->link(
-		'View Transactions', 
+		'<span class="glyphicon glyphicon-list"></span> View Transactions', 
 		array('controller' => 'actions', 'action' => 'view/' . $data['id']),
-		array('class' => 'glyphicon glyphicon-list btn btn-default')
+		array('class' => 'btn btn-default', 'escape' => false)
 	);
 ?>
 

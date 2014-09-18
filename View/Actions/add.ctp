@@ -5,8 +5,8 @@
 	echo $this->Form->input(
 		'type', 
 		array(
-			'type'=>'select',
-			'options'=>$action_type, 
+			'type' => 'select',
+			'options'=> $action_type, 
 			'div' => array('class' => 'form-group'), 
 			'class' => 'form-control'
 		)
@@ -15,8 +15,8 @@
 	echo $this->Form->input(
 		'account', 
 		array(
-			'type'=>'select',
-			'options'=>$accounts, 
+			'type' => 'select',
+			'options' => $accounts, 
 			'div' => array('class' => 'form-group'), 
 			'class' => 'form-control'
 		)
@@ -36,11 +36,10 @@
 			'class' => 'form-control datepicker',
 			'div' => array('class' => 'form-group'), 
 			'type' => 'text', 
-			'label' => false,
-			'default' => date('Y-m-d H:i:s', time())
-			'label' => false
+			'default' => date('Y-m-d H:i:s', time()),
 		)
 	);
+
 
 	echo $this->Form->end(array('label' => 'Save Transaction', 'class' => 'btn btn-default'));
 		

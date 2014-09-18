@@ -145,7 +145,7 @@ class ActionsController extends AppController {
 	}
 
 	private function _create_transaction($details) {
-		$this->Action->create();
+		debug($details);
 		if ($this->Action->save($details)) {
 			$account_id = $details['Action']['account'];
 
@@ -158,7 +158,7 @@ class ActionsController extends AppController {
 			if ($type == '1') {
 				$balance -= $details['Action']['ammount'];
 			}
-			elseif ($type == '2') {
+			elseif ($type == '2' || $type == '3') {
 				$balance += $details['Action']['ammount'];	
 			}
 

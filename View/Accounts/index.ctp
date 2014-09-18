@@ -17,13 +17,21 @@
 			?>
 		</td>
 		<td><?php echo $account['Account']['balance']; ?></td>
-		<td><?php echo $this->Html->link('edit', array('action' => 'edit', $account['Account']['id']), array('class' => 'glyphicon glyphicon-pencil btn btn-warning btn-xs' )); ?></td>
 		<td>
 			<?php 
-				 echo $this->Form->postLink(
-                    'delete',
+				echo $this->Form->postButton(
+					'<span class="glyphicon glyphicon-pencil"></span>', 
+					array('action' => 'edit', $account['Account']['id']), 
+					array('class' => 'btn btn-warning btn-xs')
+				); 
+			?>
+		</td>
+		<td>
+			<?php 
+				 echo $this->Form->postButton(
+                    '<span class="glyphicon glyphicon-remove"></span>',
                     array('action' => 'delete', $account['Account']['id']),
-                    array('confirm' => 'Are you sure you want to delete '.$account['Account']['description'].'?', 'class' => 'glyphicon glyphicon-remove btn btn-danger btn-xs')
+                    array('confirm' => 'Are you sure you want to delete '.$account['Account']['description'].'?', 'class' => 'btn btn-danger btn-xs',)
                 );
 			 ?>
 		 </td>
@@ -38,8 +46,16 @@
 
 <?php 
 	echo $this->Html->link(
-	    'Add Account',
+	    '<span class="glyphicon glyphicon-plus"></span> Add Account',
 	    array('controller' => 'accounts', 'action' => 'add'), 
-	    array('class' => 'glyphicon glyphicon-plus btn btn-default')
+	    array('class' => 'btn btn-default', 'escape' => false)
 	);
 ?>
+
+<script>
+	$(document).ready(function() {
+	    $('#delete-transaction').click(function() {
+	        return confirm(<?php echo 'Are you sure you want to delete ' . $account['Account']['description'] . '?' ?>);
+	    });
+	});
+</script>

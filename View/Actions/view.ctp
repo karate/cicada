@@ -20,13 +20,24 @@
 			<td><?php echo $this->Html->link($action['Accounts']['description'], '/accounts/view/' . $action['Action']['account']); ?></td>
 			<td class="<?php echo ($action['Action']['ammount'] < 0) ? 'red' : ''; ?>"><?php echo $action['Action']['ammount']; ?></td>
 			<td><?php echo $this->Time->format('l, F j', $action['Action']['date']); ?></td>
-			<td><?php echo $this->Html->link('edit', array('action' => 'edit', $action['Action']['id']), array('class' => 'glyphicon glyphicon-pencil btn btn-warning btn-xs' )); ?></td>
 			<td>
 				<?php 
-					echo $this->Form->postLink(
-		                'Delete',
+				// Do not allow edit in corrective transaction types
+					if ($action['Types']['id'] != '3') {
+						echo $this->Form->postButton(
+							'<span class="glyphicon glyphicon-pencil"></span>', 
+							array('action' => 'edit', $action['Action']['id']), 
+							array('class' => 'btn btn-warning btn-xs', )
+						);
+					}
+				?>
+			</td>
+			<td>
+				<?php 
+					echo $this->Form->postButton(
+		                '<span class="glyphicon glyphicon-remove"></span>',
 		                array('action' => 'delete', $action['Action']['id']),
-		                array('confirm' => 'Are you sure you want to delete this transaction?', 'class' => 'glyphicon glyphicon-remove btn btn-danger btn-xs')
+		                array('class' => 'btn btn-danger btn-xs', 'id' => 'delete-transaction')
 		            );
 	            ?>
 	        </td>
@@ -44,8 +55,16 @@
 
 <?php 
 	echo $this->Html->link(
-	    'New Transaction',
+	    '<span class="glyphicon glyphicon-plus"></span> New Transaction',
 	    array('controller' => 'actions', 'action' => 'add'),
-	    array('class' => 'glyphicon glyphicon-plus btn btn-default')
+	    array('class' => 'btn btn-default', 'escape' => false)
 	);
 ?>
+
+<script>
+	$(document).ready(function() {
+	    $('#delete-transaction').click(function() {
+	          return confirm('Are you sure you want to delete this transaction?');
+	    });
+	});
+</script>
