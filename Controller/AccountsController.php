@@ -77,6 +77,10 @@ class AccountsController extends AppController {
 			if (!$account) {
 	        	throw new NotFoundException(__('Invalid account'));
 	        }
+
+	        // Get full account history
+	        $this->loadModel('Action');
+	        $account['Account']['history'] = $this->Action->find('all', array('conditions' => array('Action.account' => $id)));
         }
         else {
         	$accounts = $this->Account->find('all');
