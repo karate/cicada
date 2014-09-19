@@ -42,7 +42,6 @@ class AccountsController extends AppController {
 	    }
 
 	}
-/*
 	public function edit($id = NULL) {
 		 if (!$id) {
 	        throw new NotFoundException(__('Invalid account'));
@@ -66,7 +65,6 @@ class AccountsController extends AppController {
 	        $this->request->data = $account;
 	    }
 	}
-*/
 	public function view($id = NULL) {
 		/*if (!$id) {
         	throw new NotFoundException(__('Invalid account'));

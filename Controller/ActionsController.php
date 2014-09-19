@@ -34,7 +34,7 @@ class ActionsController extends AppController {
 	}
 
 	public function edit($id = NULL) {
-		 if (!$id) {
+            if (!$id) {
 	        throw new NotFoundException(__('Invalid transaction'));
 	    }
 

@@ -15,5 +15,13 @@
 			'class' => 'form-control'
 		)
 	);
+        echo $this->Form->input(
+                'balance',
+                array(
+                        'div' => array('class' => 'form-group'),
+                        'class' => 'form-control',
+                        'readonly'
+                )
+        );
 	echo $this->Form->end(array('label' => 'Save Account', 'class' => 'btn btn-default'));
 ?>
