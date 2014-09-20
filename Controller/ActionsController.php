@@ -145,7 +145,6 @@ class ActionsController extends AppController {
 	}
 
 	private function _create_transaction($details) {
-		debug($details);
 		if ($this->Action->save($details)) {
 			$account_id = $details['Action']['account'];
 

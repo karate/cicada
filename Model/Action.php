@@ -12,11 +12,20 @@ class Action extends AppModel {
             	'rule' => 'notEmpty'
             ),
             'isdate' => array (
-            	'rule' => 'datetime',
+            	'rule' => 'isDateOrDatetime',
             	'message' => 'Enter a valid date'
             )
         )
     );
+
+    public function isDateOrDatetime($check) {
+        $value = array_values($check);
+        $value = $value[0];
+
+        if ($value === date('Y-m-d', strtotime($value)) || $value === date('Y-m-d H:i:s', strtotime($value))) { 
+            return true;
+        }
+    }
 }
 
 ?>
