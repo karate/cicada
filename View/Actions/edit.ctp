@@ -31,6 +31,14 @@
 	);
 
 	echo $this->Form->input(
+		'description', 
+		array(
+			'class' => 'form-control',
+			'div' => array('class' => 'form-group'),
+		)
+	);
+
+	echo $this->Form->input(
 		'date', 
 		array(
 			'class' => 'form-control datepicker',

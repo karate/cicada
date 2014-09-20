@@ -11,6 +11,7 @@
 		<th>Type</th>
 		<th>Account</th>
 		<th>Ammount</th>
+		<th>Description</th>
 		<th>Date / Time</th>
 		<th colspan=2>Actions</th>
 	</tr>
@@ -19,6 +20,7 @@
 			<td><?php echo $action['Types']['description']; ?></td>
 			<td><?php echo $this->Html->link($action['Accounts']['description'], '/accounts/view/' . $action['Action']['account']); ?></td>
 			<td class="<?php echo ($action['Action']['ammount'] < 0) ? 'red' : ''; ?>"><?php echo $action['Action']['ammount']; ?></td>
+			<td><?php echo $action['Action']['description']; ?></td>
 			<td><?php echo $this->Time->format('l, F j', $action['Action']['date']); ?></td>
 			<td>
 				<?php 

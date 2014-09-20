@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `actions` (
   `type` int(11) NOT NULL,
   `account` int(11) NOT NULL,
   `ammount` decimal(10,0) NOT NULL,
+  `description` text COLLATE utf8_bin,
   `balance` decimal(10,0) DEFAULT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`id`)
