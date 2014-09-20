@@ -33,69 +33,50 @@
 
 
 <script>
-
 	var data = {
-		<?php
-		echo 'labels: [';
-		foreach ($data['history'] as $transaction) {
-			echo '"' . $transaction['Action']['date'] . '",';
-		}
-		echo '],';
+		labels: [
+		<?php 
+			foreach ($data['history'] as $transaction) {
+				echo '"' . $transaction['Action']['date'] . '",';
+			}
 		?>
+		],
 	    datasets: [
 	        {
-	            label: "Deposit",
+	            label: "History",
 	            fillColor: "rgba(20,250,40,0.2)",
 	            strokeColor: "rgba(220,220,220,1)",
 	            pointColor: "rgba(220,220,220,1)",
 	            pointStrokeColor: "#fff",
 	            pointHighlightFill: "#fff",
 	            pointHighlightStroke: "rgba(220,220,220,1)",
+	            data: [
 	            <?php 
-					echo 'data: [';
 					foreach ($data['history'] as $transaction) {
-						if ($transaction['Action']['type'] == "2"){
-						        $ammount = $transaction['Action']['ammount'];
-						        echo $ammount . ',';
-                                                }
-                                                else {
-						        echo 0 . ',';
-                                                }
+						echo $transaction['Action']['balance'] . ',';
 					}
-					echo '],';
 				?>
+				],
+				descriptions: [
+			    <?php 
+					foreach ($data['history'] as $transaction) {
+						echo '"' . $transaction['Action']['description'] . '",';
+					}
+				?>
+			    ]
 	        },
-	        {
-	            label: "Withdraw",
-	            fillColor: "rgba(250,20,20,0.2)",
-	            strokeColor: "rgba(220,220,220,1)",
-	            pointColor: "rgba(220,220,220,1)",
-	            pointStrokeColor: "#fff",
-	            pointHighlightFill: "#fff",
-	            pointHighlightStroke: "rgba(220,220,220,1)",
-	            <?php 
-					echo 'data: [';
-					foreach ($data['history'] as $transaction) {
-						if ($transaction['Action']['type'] == "1"){
-						        $ammount = $transaction['Action']['ammount'];
-						        echo $ammount . ',';
-                                                }
-                                                else {
-						        echo 0 . ',';
-                                                }
-					}
-					echo '],';
-				?>
-	        }
-	    ]
+	    ],
 	};
 
-	var options = {};
+	var options = {
+		tooltipTemplate: "\"<%= description %>\" \n (balance: <%= value %>)",
+	};
 
 	// Get context with jQuery - using jQuery's .get() method.
 	var ctx = $("#myChart").get(0).getContext("2d");
 	// This will get the first returned node in the jQuery collection.
 
 	var myNewChart = new Chart(ctx).Line(data, options);
+	myNewChart.defaults.multiTooltipTemplate = "as";
 
 </script>
