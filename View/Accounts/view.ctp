@@ -58,6 +58,9 @@
 						        $ammount = $transaction['Action']['ammount'];
 						        echo $ammount . ',';
                                                 }
+                                                else {
+						        echo 0 . ',';
+                                                }
 					}
 					echo '],';
 				?>
@@ -75,7 +78,10 @@
 					foreach ($data['history'] as $transaction) {
 						if ($transaction['Action']['type'] == "1"){
 						        $ammount = $transaction['Action']['ammount'];
-                                                        echo $ammount . ',';
+						        echo $ammount . ',';
+                                                }
+                                                else {
+						        echo 0 . ',';
                                                 }
 					}
 					echo '],';
