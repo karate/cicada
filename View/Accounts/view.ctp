@@ -69,7 +69,7 @@
 	};
 
 	var options = {
-		tooltipTemplate: "\"<%= description %>\" \n (balance: <%= value %>)",
+		tooltipTemplate: "<%= value %>: \"<%= description %>\"",
 	};
 
 	// Get context with jQuery - using jQuery's .get() method.
