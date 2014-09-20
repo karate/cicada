@@ -162,11 +162,15 @@ class ActionsController extends AppController {
 				$balance += $details['Action']['ammount'];	
 			}
 
+			// Update balance in account
 			$this->Account->id = $account_id;
 			if ($this->Account->saveField('balance', $balance)) {
 		        $this->Session->setFlash(__('Transaction has been saved. New balance is '. $balance));
 		        return $this->redirect(array('action' => 'index'));
 			}
+
+			// Save account balance in transaction
+			$this->Action->saveField('balance', $balance);
 		}
 
 		$this->Session->setFlash(__('Unable to save transaction.'));
