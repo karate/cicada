@@ -16,11 +16,6 @@ td.red {
 	color: red;
 }
 
-#ActionAddForm, #AccountAddForm,
-#ActionEditForm, #AccountEditForm {
-	max-width: 200px;
-}
-
 table.cake-sql-log {
 	background-color: #fdfdfd;
 	border: 1px solid #e7e7e7;

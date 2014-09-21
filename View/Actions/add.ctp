@@ -1,70 +1,68 @@
 <h1>Add Transaction</h1>
-<?php
-	echo $this->Form->create('Action', array('class' => 'form'));
+<div class="row">
+	<?php
+		echo $this->Form->create('Action', array('class' => 'form col-md-3'));
 
-	echo $this->Form->input(
-		'type', 
-		array(
-			'type' => 'select',
-			'options'=> $action_type, 
-			'div' => array('class' => 'form-group'), 
-			'class' => 'form-control'
-		)
-	);
+		echo $this->Form->input(
+			'type', 
+			array(
+				'type' => 'select',
+				'options'=> $action_type, 
+				'div' => array('class' => 'form-group'), 
+				'class' => 'form-control'
+			)
+		);
 
-	echo $this->Form->input(
-		'account', 
-		array(
-			'type' => 'select',
-			'options' => $accounts, 
-			'div' => array('class' => 'form-group'), 
-			'class' => 'form-control'
-		)
-	);
-	
-	echo $this->Form->input(
-		'ammount', 
-		array(
-			'class' => 'form-control',
-			'div' => array('class' => 'form-group'),
-		)
-	);
-
-	echo $this->Form->input(
-		'description', 
-		array(
-			'class' => 'form-control',
-			'div' => array('class' => 'form-group'),
-		)
-	);
-
-	echo $this->Form->input(
-		'date', 
-		array(
-			'class' => 'form-control datepicker',
-			'div' => array('class' => 'form-group'), 
-			'type' => 'text', 
-			'default' => date('Y-m-d H:i:s', time()),
-		)
-	);
-
-
-	echo $this->Form->end(array('label' => 'Save Transaction', 'class' => 'btn btn-default'));
+		echo $this->Form->input(
+			'account', 
+			array(
+				'type' => 'select',
+				'options' => $accounts, 
+				'div' => array('class' => 'form-group'), 
+				'class' => 'form-control'
+			)
+		);
 		
+		echo $this->Form->input(
+			'ammount', 
+			array(
+				'class' => 'form-control',
+				'div' => array('class' => 'form-group'),
+			)
+		);
 
-	echo $this->Html->css('bootstrap-datepicker');
-	echo $this->Html->script('datepicker');
-?>
+		echo $this->Form->input(
+			'description', 
+			array(
+				'class' => 'form-control',
+				'div' => array('class' => 'form-group'),
+			)
+		);
+
+		echo $this->Form->input(
+			'date', 
+			array(
+				'class' => 'form-control datepicker',
+				'div' => array('class' => 'form-group'), 
+				'type' => 'text', 
+				'default' => date('Y-m-d H:i:s', time()),
+			)
+		);
+
+
+		echo $this->Form->end(array('label' => 'Save Transaction', 'class' => 'btn btn-default'));
+			
+
+		echo $this->Html->css('bootstrap-datepicker');
+		echo $this->Html->script('datepicker');
+	?>
+</div>
+
 <script>
 	(function($) {
-    $(document).ready(function() {
+	$(document).ready(function() {
 
-        $(".datepicker").datepicker()
-         //       .on('show', function(ev) {
-        //    var today = new Date();
-        //   var t = today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
-        //    $('.datepicker').data({date: t}).datepicker('update');
-       // });
-    });
+		$(".datepicker").datepicker();
+	});
 })(jQuery);
 </script>
