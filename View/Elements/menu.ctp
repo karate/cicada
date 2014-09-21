@@ -16,6 +16,7 @@
 			<ul class="nav navbar-nav">
 				<li><?php echo $this->Html->link('Accounts', '/accounts'); ?></li>
 				<li><?php echo $this->Html->link('Transactions', '/actions'); ?></li>
+				<li><?php echo $this->Html->link('Tags', '/tags'); ?></li>
 				<li><?php echo $this->Html->link('Information', '/stats'); ?></li>
 			</ul>
 		</div>
