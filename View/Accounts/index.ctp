@@ -29,10 +29,10 @@
 		<td>
 			<?php 
 				 echo $this->Form->postButton(
-                    '<span class="glyphicon glyphicon-remove"></span>',
-                    array('action' => 'delete', $account['Account']['id']),
-                    array('confirm' => 'Are you sure you want to delete '.$account['Account']['description'].'?', 'class' => 'btn btn-danger btn-xs',)
-                );
+					'<span class="glyphicon glyphicon-remove"></span>',
+					array('action' => 'delete', $account['Account']['id']),
+					array('class' => 'btn btn-danger btn-xs delete-account')
+				);
 			 ?>
 		 </td>
 	</tr>
@@ -46,16 +46,16 @@
 
 <?php 
 	echo $this->Html->link(
-	    '<span class="glyphicon glyphicon-plus"></span> Add Account',
-	    array('controller' => 'accounts', 'action' => 'add'), 
-	    array('class' => 'btn btn-default', 'escape' => false)
+		'<span class="glyphicon glyphicon-plus"></span> Add Account',
+		array('controller' => 'accounts', 'action' => 'add'), 
+		array('class' => 'btn btn-default', 'escape' => false)
 	);
 ?>
 
 <script>
 	$(document).ready(function() {
-	    $('#delete-transaction').click(function() {
-	        return confirm(<?php echo 'Are you sure you want to delete ' . $account['Account']['description'] . '?' ?>);
-	    });
+		$('.delete-account').click(function() {
+			return confirm('<?php echo 'Are you sure you want to delete "' . $account['Account']['description'] . '" account?' ?>');
+		});
 	});
 </script>

@@ -37,12 +37,12 @@
 			<td>
 				<?php 
 					echo $this->Form->postButton(
-		                '<span class="glyphicon glyphicon-remove"></span>',
-		                array('action' => 'delete', $action['Action']['id']),
-		                array('class' => 'btn btn-danger btn-xs', 'id' => 'delete-transaction')
-		            );
-	            ?>
-	        </td>
+						'<span class="glyphicon glyphicon-remove"></span>',
+						array('action' => 'delete', $action['Action']['id']),
+						array('class' => 'btn btn-danger btn-xs delete-transaction')
+					);
+				?>
+			</td>
 		</tr>
 
 	<?php endforeach; ?>
@@ -57,16 +57,16 @@
 
 <?php 
 	echo $this->Html->link(
-	    '<span class="glyphicon glyphicon-plus"></span> New Transaction',
-	    array('controller' => 'actions', 'action' => 'add'),
-	    array('class' => 'btn btn-default', 'escape' => false)
+		'<span class="glyphicon glyphicon-plus"></span> New Transaction',
+		array('controller' => 'actions', 'action' => 'add'),
+		array('class' => 'btn btn-default', 'escape' => false)
 	);
 ?>
 
 <script>
 	$(document).ready(function() {
-	    $('#delete-transaction').click(function() {
-	          return confirm('Are you sure you want to delete this transaction?');
-	    });
+		$('.delete-transaction').click(function() {
+			  return confirm('Are you sure you want to delete this transaction?');
+		});
 	});
 </script>
