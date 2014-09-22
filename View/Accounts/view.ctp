@@ -12,18 +12,18 @@
 		<tr><th>IBAN</th><td><?php echo $data['iban']; ?></td></tr>
 		<tr><th>Balance</th><td><?php echo $data['balance']; ?></td></tr>
 		</table>
-        <?php
-	        echo $this->Html->link(
-		        '<span class="glyphicon glyphicon-pencil"></span> Edit account',
-        		array('action' => 'edit', $data['id']),
-        		array('class' => 'btn btn-default', 'escape' => false));
+		<?php
+			echo $this->Html->link(
+				'<span class="glyphicon glyphicon-pencil"></span> Edit account',
+				array('action' => 'edit', $data['id']),
+				array('class' => 'btn btn-default', 'escape' => false));
 
-	        echo $this->Html->link(
-	        	'<span class="glyphicon glyphicon-list"></span> View Transactions', 
-	        	array('controller' => 'actions', 'action' => 'view/' . $data['id']),
-	        	array('class' => 'btn btn-default', 'escape' => false)
-        	);
-        ?>
+			echo $this->Html->link(
+				'<span class="glyphicon glyphicon-list"></span> View Transactions', 
+				array('controller' => 'actions', 'action' => 'view/' . $data['id']),
+				array('class' => 'btn btn-default', 'escape' => false)
+			);
+		?>
 		
 	</div>
 	<div class="account-graphs col-md-9">
@@ -41,31 +41,31 @@
 			}
 		?>
 		],
-	    datasets: [
-	        {
-	            label: "History",
-	            fillColor: "rgba(20,250,40,0.2)",
-	            strokeColor: "rgba(220,220,220,1)",
-	            pointColor: "rgba(220,220,220,1)",
-	            pointStrokeColor: "#fff",
-	            pointHighlightFill: "#fff",
-	            pointHighlightStroke: "rgba(220,220,220,1)",
-	            data: [
-	            <?php 
+		datasets: [
+			{
+				label: "History",
+				fillColor: "rgba(20,250,40,0.2)",
+				strokeColor: "rgba(220,220,220,1)",
+				pointColor: "rgba(220,220,220,1)",
+				pointStrokeColor: "#fff",
+				pointHighlightFill: "#fff",
+				pointHighlightStroke: "rgba(220,220,220,1)",
+				data: [
+				<?php 
 					foreach ($data['history'] as $transaction) {
 						echo $transaction['Action']['balance'] . ',';
 					}
 				?>
 				],
 				descriptions: [
-			    <?php 
+				<?php 
 					foreach ($data['history'] as $transaction) {
 						echo '"' . $transaction['Action']['description'] . '",';
 					}
 				?>
-			    ]
-	        },
-	    ],
+				]
+			},
+		],
 	};
 
 	var options = {

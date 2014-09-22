@@ -22,11 +22,11 @@
 		<td>
 			<?php 
 					echo $this->Form->postButton(
-		                '<span class="glyphicon glyphicon-remove"></span>',
-		                array('action' => 'delete', $tag['Tag']['id']),
-		                array('class' => 'btn btn-danger btn-xs delete-tag')
-		            );
-	            ?>
+						'<span class="glyphicon glyphicon-remove"></span>',
+						array('action' => 'delete', $tag['Tag']['id']),
+						array('class' => 'btn btn-danger btn-xs delete-tag')
+					);
+				?>
 		 </td>
 	</tr>
 <?php endforeach; ?>
@@ -34,16 +34,16 @@
 
 <?php 
 	echo $this->Html->link(
-	    '<span class="glyphicon glyphicon-plus"></span> Add Tag',
-	    array('controller' => 'tags', 'action' => 'add'), 
-	    array('class' => 'btn btn-default', 'escape' => false)
+		'<span class="glyphicon glyphicon-plus"></span> Add Tag',
+		array('controller' => 'tags', 'action' => 'add'), 
+		array('class' => 'btn btn-default', 'escape' => false)
 	);
 ?>
 
 <script>
 	$(document).ready(function() {
-	    $('.delete-tag').click(function() {
-	          return confirm('Are you sure you want to delete "<?php echo $tag['Tag']['name']; ?>"?');
-	    });
+		$('.delete-tag').click(function() {
+				return confirm('Are you sure you want to delete "<?php echo $tag['Tag']['name']; ?>"?');
+		});
 	});
 </script>
