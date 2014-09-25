@@ -21,3 +21,10 @@ table.cake-sql-log {
 	border: 1px solid #e7e7e7;
 	border-radius: 10px;
 }
+
+table.transactions span.tag {
+	margin: 2px;
+	padding: 2px 5px;
+	border: 1px #ccc solid;
+	border-radius: 5px;
+}

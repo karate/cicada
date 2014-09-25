@@ -6,7 +6,7 @@
 	<div class="error">Sorry, no transactions :(</div>
 <?php else: ?>
 
-	<table class="table table-hover">
+	<table class="table table-hover transactions">
 	<tr>
 		<th>Type</th>
 		<th>Account</th>
@@ -17,15 +17,23 @@
 	</tr>
 	<?php foreach ($actions as $action): ?>
 		<tr>
-			<td><?php echo $action['Types']['description']; ?></td>
-			<td><?php echo $this->Html->link($action['Accounts']['description'], '/accounts/view/' . $action['Action']['account']); ?></td>
+			<td><?php echo $action['Type']['description']; ?></td>
+			<td><?php echo $this->Html->link($action['Account']['description'], '/accounts/view/' . $action['Action']['account']); ?></td>
 			<td class="<?php echo ($action['Action']['ammount'] < 0) ? 'red' : ''; ?>"><?php echo $action['Action']['ammount']; ?></td>
 			<td><?php echo $action['Action']['description']; ?></td>
+			<td><?php 
+					if (isset($action['Tag'])){
+						foreach ($action['Tag'] as $tag) {
+							echo '<span class="tag">'.$tag['Tag']['name'].'</span>';
+						}
+					}
+				?>
+			</td>
 			<td><?php echo $this->Time->format('l, F j', $action['Action']['date']); ?></td>
 			<td>
 				<?php 
 				// Do not allow edit in corrective transaction types
-					if ($action['Types']['id'] != '3') {
+					if ($action['Type']['id'] != '3') {
 						echo $this->Form->postButton(
 							'<span class="glyphicon glyphicon-pencil"></span>', 
 							array('action' => 'edit', $action['Action']['id']), 

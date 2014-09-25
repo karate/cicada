@@ -18,6 +18,10 @@ class ActionsController extends AppController {
 
 		$this->loadModel('ActionType');
 		$this->set('action_type', $this->ActionType->find('list', array('fields' => array('id', 'description'))));
+
+		$this->loadModel('Tag');
+		$this->set('tags', $this->Tag->find('list', array('fields' => array('id', 'name'))));
+
 	}
 
 	public function delete($id = NULL) {
@@ -56,29 +60,52 @@ class ActionsController extends AppController {
 		if (!$this->request->data) {
 			$this->request->data = $action;
 		}
+
 		$this->loadModel('Account');
 		$this->set('accounts', $this->Account->find('list', array('fields' => array('id', 'description'))));
 
 		$this->loadModel('ActionType');
 		$this->set('action_type', $this->ActionType->find('list', array('fields' => array('id', 'description'))));
+
+		$this->loadModel('ActionTag');
+		$selected_tags = $this->ActionTag->find('all', array('fileds' => array('id', 'name'), 'conditions' => array('ActionTag.action_id' => $id)));
+		foreach ($selected_tags as $selected_tag) {
+			$this->request->data['Action']['tags'][] = $selected_tag['ActionTag']['tag_id'];
+		}
+		
+		$this->loadModel('Tag');
+		$tags = $this->Tag->find('list', array('fields' => array('id', 'name')));
+		$this->set('tags', $tags);
 	}
 
 	public function view($account = NULL) {
 		$query = array(
-			'fields' => array('Types.id', 'Types.description', 'Accounts.description', 'Accounts.balance', 'Action.*'),
+			'fields' => array('Type.id', 'Type.description', 'Account.description', 'Account.balance', 'Action.*',),
 			'joins' => array(
 				array(
 					'table' => 'action_types',
-					'alias' => 'Types',
+					'alias' => 'Type',
 					'type' => 'left',
-					'conditions'=> array('Action.type = Types.id'),
+					'conditions'=> array('Action.type = Type.id'),
 				),
 				array(
 					'table' => 'accounts',
-					'alias' => 'Accounts',
+					'alias' => 'Account',
 					'type' => 'left',
-					'conditions'=> array('Action.account = Accounts.id'),
-				)
+					'conditions'=> array('Action.account = Account.id'),
+				),/*
+				array(
+					'table' => 'action_tags',
+					'alias' => 'ActionTag',
+					'type' => 'left',
+					'conditions'=> array('ActionTag.action_id = Action.id'),
+				),
+				array(
+					'table' => 'tags',
+					'alias' => 'Tag',
+					'type' => 'left',
+					'conditions'=> array('Tag.id = ActionTag.tag_id'),
+				),*/
 			),
 			'order' => array('Action.date DESC')
 		);
@@ -93,11 +120,35 @@ class ActionsController extends AppController {
 
 		
 		foreach ($actions as &$action) { 
-			if ($action['Types']['id'] == 1) {
+			if ($action['Type']['id'] == 1) {
 				$action['Action']['ammount'] *= -1;
 			}
 		}
 
+		$this->loadModel('ActionTags');
+		foreach ($actions as &$action) {
+			$action_id = $action['Action']['id'];
+			$query = array(
+				'fields' => array('ActionTags.*', 'Tag.id', 'Tag.name'),
+				'joins' =>array(
+					array(
+						'table' => 'tags',
+						'alias' => 'Tag',
+						'type' => 'left',
+						'conditions'=> array('Tag.id = ActionTags.tag_id'),
+					),
+				),
+				'conditions' => array(
+					'ActionTags.action_id' => $action_id,
+				),
+			);
+
+			$tag = $this->ActionTags->find('all', $query);
+			if ($tag) {
+				$action['Tag'] = $tag;	
+			}
+
+		}
 		$this->set('actions', $actions);
 	}
 
@@ -124,6 +175,10 @@ class ActionsController extends AppController {
 		// If transaction was deleted successfully, update account balance
 		if ($this->Action->delete($transaction_id)) {
 
+			// Delete action-tag associations
+			$this->loadModel('ActionTag');
+			$this->ActionTag->deleteAll(array('ActionTag.action_id' => $transaction_id));
+
 			// Load account details
 			$this->loadModel('Account');
 			$account = $this->Account->find('first', array('conditions' => array('Account.id' => $account_id)));
@@ -148,6 +203,15 @@ class ActionsController extends AppController {
 		if ($this->Action->save($details)) {
 			$account_id = $details['Action']['account'];
 
+
+			// Save action-tag association in action_tags table
+			$this->loadModel('ActionTag');
+			foreach ($details['Action']['tags'] as $tag) {
+				$this->ActionTag->create();
+				$this->ActionTag->saveField('action_id', $this->Action->getLastInsertId());
+				$this->ActionTag->saveField('tag_id', $tag);
+			}
+
 			$this->loadModel('Account');
 			$account = $this->Account->find('first', array('conditions' => array('id' => $account_id)));
 			$balance = $account['Account']['balance'];
@@ -170,6 +234,7 @@ class ActionsController extends AppController {
 				$this->Session->setFlash(__('Transaction has been saved. New balance is '. $balance));
 				return $this->redirect(array('action' => 'index'));
 			}
+
 		}
 
 		$this->Session->setFlash(__('Unable to save transaction.'));

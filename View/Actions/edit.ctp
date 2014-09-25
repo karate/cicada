@@ -38,6 +38,17 @@
 				'div' => array('class' => 'form-group'),
 			)
 		);
+		
+		echo $this->Form->input(
+			'tags', 
+			array(
+				'type' => 'select',
+				'options'=> $tags, 
+				'multiple' => true,
+				'div' => array('class' => 'form-group'), 
+				'class' => 'form-control'
+			)
+		);
 
 		echo $this->Form->input(
 			'date', 
