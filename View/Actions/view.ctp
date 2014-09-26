@@ -12,6 +12,7 @@
 		<th>Account</th>
 		<th>Ammount</th>
 		<th>Description</th>
+		<th>Tags</th>
 		<th>Date / Time</th>
 		<th colspan=2>Actions</th>
 	</tr>
@@ -30,7 +31,7 @@
 				?>
 			</td>
 			<td><?php echo $this->Time->format('l, F j', $action['Action']['date']); ?></td>
-			<td>
+			<td class="action-column">
 				<?php 
 				// Do not allow edit in corrective transaction types
 					if ($action['Type']['id'] != '3') {
@@ -42,7 +43,7 @@
 					}
 				?>
 			</td>
-			<td>
+			<td class="action-column">
 				<?php 
 					echo $this->Form->postButton(
 						'<span class="glyphicon glyphicon-remove"></span>',

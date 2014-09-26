@@ -10,7 +10,7 @@
 	<tr>
 		<td><?php echo $tag['Tag']['name']; ?></td>
 		<td><?php echo $tag['Tag']['description']; ?></td>
-		<td>
+		<td class="action-column">
 			<?php 
 				echo $this->Form->postButton(
 					'<span class="glyphicon glyphicon-pencil"></span>', 
@@ -19,7 +19,7 @@
 				); 
 			?>
 		</td>
-		<td>
+		<td class="action-column">
 			<?php 
 					echo $this->Form->postButton(
 						'<span class="glyphicon glyphicon-remove"></span>',

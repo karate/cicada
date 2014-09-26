@@ -17,7 +17,7 @@
 			?>
 		</td>
 		<td><?php echo $account['Account']['balance']; ?></td>
-		<td>
+		<td class="action-column">
 			<?php 
 				echo $this->Form->postButton(
 					'<span class="glyphicon glyphicon-pencil"></span>', 
@@ -26,7 +26,7 @@
 				); 
 			?>
 		</td>
-		<td>
+		<td class="action-column">
 			<?php 
 				 echo $this->Form->postButton(
 					'<span class="glyphicon glyphicon-remove"></span>',

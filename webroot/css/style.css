@@ -27,4 +27,9 @@ table.transactions span.tag {
 	padding: 2px 5px;
 	border: 1px #ccc solid;
 	border-radius: 5px;
+	background-color: #f7faff;
+}
+
+table td.action-column {
+	width: 50px;
 }
