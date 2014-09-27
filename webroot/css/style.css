@@ -12,6 +12,9 @@ nav.main-menu ul li {
 	display: inline-block;
 }
 
+/* * * * * * * * * * * * 
+ *        TABLES       *
+ * * * * * * * * * * * */
 td.red {
 	color: red;
 }
@@ -32,4 +35,31 @@ table.transactions span.tag {
 
 table td.action-column {
 	width: 50px;
+}
+
+
+/* * * * * * * * * * * * 
+ *  CHOSEN OVERRIDES   *
+ * * * * * * * * * * * */
+
+/* Make  controls slightly bigger */
+.chosen-container-single .chosen-single {
+	height: 28px;
+	line-height: 26px;
+}
+
+.chosen-container {
+	font-size: inherit;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice {
+	padding: 5px 20px 5px 5px;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
+	top: 6px;
+}
+
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+	height: 29px;
 }

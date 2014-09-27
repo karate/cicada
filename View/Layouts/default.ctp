@@ -24,20 +24,29 @@ $title = "Cicada FTW!"
 	<title>
 		<?php echo $title_for_layout; ?>
 	</title>
-	<?php
-		echo $this->Html->meta('icon');
+	
+		<?php
+			echo $this->Html->meta('icon');
+			echo $this->fetch('meta');
+		?>
 
-	//	echo $this->Html->css('cake.generic');
-		echo $this->Html->css('style');
+		<!-- CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<?php
+			echo $this->fetch('css');
+			echo $this->Html->css('chosen.css');
+			echo $this->Html->css('style');
+		?>
 
-		echo $this->fetch('meta');
-		echo $this->fetch('css');
-		echo $this->fetch('script');
-	?>
+		<!-- JS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<?php
+			echo $this->fetch('script');
+			echo $this->Html->script('chosen.jquery.min.js');
+			echo $this->Html->script('script.js')
+		?>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container">
