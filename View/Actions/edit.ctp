@@ -6,7 +6,7 @@
 		echo $this->Form->input(
 			'type', 
 			array(
-				'type'=>'select',
+				'type' => 'select',
 				'options'=>$action_type, 
 				'div' => array('class' => 'form-group'), 
 				'class' => 'form-control'
@@ -16,7 +16,7 @@
 		echo $this->Form->input(
 			'account', 
 			array(
-				'type'=>'select',
+				'type' => 'select',
 				'options'=>$accounts, 
 				'div' => array('class' => 'form-group'), 
 				'class' => 'form-control'
@@ -27,7 +27,8 @@
 			'ammount', 
 			array(
 				'class' => 'form-control',
-				'div' => array('class' => 'form-group')
+				'div' => array('class' => 'form-group'),
+				'type' => 'text',
 			)
 		);
 

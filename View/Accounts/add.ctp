@@ -6,21 +6,22 @@
 			'description', 
 			array(
 				'div' => array('class' => 'form-group'), 
-				'class' => 'form-control'
+				'class' => 'form-control',
 			)
 		);
 		echo $this->Form->input(
 			'iban', 
 			array(
 				'div' => array('class' => 'form-group'), 
-				'class' => 'form-control'
+				'class' => 'form-control',
 			)
 		);
 		echo $this->Form->input(
 			'balance', 
 			array(
 				'div' => array('class' => 'form-group'), 
-				'class' => 'form-control'
+				'class' => 'form-control',
+				'type' => 'text',
 			)
 		);
 		echo $this->Form->end(array('label' => 'Save Account', 'class' => 'btn btn-default'));

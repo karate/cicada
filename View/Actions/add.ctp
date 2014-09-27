@@ -28,6 +28,7 @@
 			array(
 				'class' => 'form-control',
 				'div' => array('class' => 'form-group'),
+				'type' => 'text',
 			)
 		);
 
