@@ -148,7 +148,7 @@ class ActionsController extends AppController {
 					),
 				),
 				'conditions' => array(
-					'ActionTags.action_id' => 1234,
+					'ActionTags.action_id' => $action_id,
 				),
 			);
 
