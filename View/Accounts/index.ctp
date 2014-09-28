@@ -1,7 +1,3 @@
-<?php
-	$total_balance = 0;
-?>
-
 <h1>Accounts</h1>
 <div id="accounts">
 	<div class="loading-icon">
@@ -32,7 +28,7 @@
 					$("#accounts").html('<div class="error">Sorry, no accounts :(</div>');
 				}
 				else {
-					$("#accounts").html(data);
+					$("#accounts").hide().html(data).fadeIn();
 				}
 
 				$('.delete-account').click(function() {

@@ -1,12 +1,10 @@
-	<?php if (isset($account)): ?>
-		<h2><?php echo $account['description']; ?></h2>
-	<?php endif; ?>
+<h1>Accounts</h1>
 
-	<div id="transactions">
-		<div class="loading-icon">
-			<img src="<?php echo $this->webroot; ?>/img/loading.gif" alt="loading" height="32" width="32"/>
-		</div>
+<div id="transactions">
+	<div class="loading-icon">
+		<img src="<?php echo $this->webroot; ?>/img/loading.gif" alt="loading" height="32" width="32"/>
 	</div>
+</div>
 
 <?php 
 	echo $this->Html->link(
@@ -31,7 +29,7 @@
 					$("#transactions").html('<div class="error">Sorry, no transactions :(</div>');
 				}
 				else {
-					$("#transactions").html(data);
+					$("#transactions").hide().html(data).fadeIn();
 				}
 				
 				$('.delete-transaction').click(function() {
