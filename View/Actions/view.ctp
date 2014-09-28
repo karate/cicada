@@ -29,7 +29,7 @@
 					$("#transactions").html('<div class="error">Sorry, no transactions :(</div>');
 				}
 				else {
-					$("#transactions").hide().html(data).fadeIn();
+					$("#transactions").hide().html(data).slideDown();
 				}
 				
 				$('.delete-transaction').click(function() {

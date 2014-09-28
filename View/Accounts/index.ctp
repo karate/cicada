@@ -28,7 +28,7 @@
 					$("#accounts").html('<div class="error">Sorry, no accounts :(</div>');
 				}
 				else {
-					$("#accounts").hide().html(data).fadeIn();
+					$("#accounts").hide().html(data).slideDown();
 				}
 
 				$('.delete-account').click(function() {

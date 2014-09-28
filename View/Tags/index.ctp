@@ -27,7 +27,7 @@
 					$("#tags").html('<div class="error">Sorry, no tags :(</div>');
 				}
 				else {
-					$("#tags").hide().html(data).fadeIn();
+					$("#tags").hide().html(data).slideDown();
 				}
 
 				$('.delete-tag').click(function() {
