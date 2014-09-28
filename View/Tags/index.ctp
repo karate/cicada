@@ -6,14 +6,6 @@
 	</div>
 </div>
 
-<?php 
-	echo $this->Html->link(
-		'<span class="glyphicon glyphicon-plus"></span> Add Tag',
-		array('controller' => 'tags', 'action' => 'add'), 
-		array('class' => 'btn btn-default', 'escape' => false)
-	);
-?>
-
 <script>
 	$.ajax({
 			dataType: "html",
@@ -27,12 +19,29 @@
 					$("#tags").html('<div class="error">Sorry, no tags :(</div>');
 				}
 				else {
-					$("#tags").hide().html(data).slideDown();
+					$("#tags").hide().html(data);
 				}
-
+				
 				$('.delete-tag').click(function() {
-					return confirm('Are you sure you want to delete this tag?');
+					  return confirm('Are you sure you want to delete this tag?');
 				});
+			},
+			complete: function (data) {
+						
+				var $button = $('<?php 
+					echo $this->Html->link(
+						'<span class="glyphicon glyphicon-plus"></span> Add Tag',
+						array('controller' => 'tags', 'action' => 'add'), 
+						array('class' => 'btn btn-primary invisible', 'escape' => false)
+					);
+				?>');
+
+				$("#tags").append($button);
+				$("#tags").slideDown(400);
+
+				setTimeout(function(){
+					$button.hide().removeClass('invisible').fadeIn();
+				}, 400);
 			}
 		});
 </script>

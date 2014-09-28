@@ -6,14 +6,6 @@
 	</div>
 </div>
 
-<?php 
-	echo $this->Html->link(
-		'<span class="glyphicon glyphicon-plus"></span> New Transaction',
-		array('controller' => 'actions', 'action' => 'add'),
-		array('class' => 'btn btn-default', 'escape' => false)
-	);
-?>
-
 <script>
 	$(document).ready(function() {
 
@@ -29,12 +21,29 @@
 					$("#transactions").html('<div class="error">Sorry, no transactions :(</div>');
 				}
 				else {
-					$("#transactions").hide().html(data).slideDown();
+					$("#transactions").hide().html(data);
 				}
 				
 				$('.delete-transaction').click(function() {
 					  return confirm('Are you sure you want to delete this transaction?');
 				});
+			},
+			complete: function (data) {
+						
+				var $button = $('<?php 
+					echo $this->Html->link(
+						'<span class="glyphicon glyphicon-plus"></span> New Transaction',
+						array('controller' => 'actions', 'action' => 'add'),
+						array('class' => 'btn btn-primary invisible', 'escape' => false)
+					);
+				?>');
+
+				$("#transactions").append($button);
+				$("#transactions").slideDown(400);
+
+				setTimeout(function(){
+					$button.hide().removeClass('invisible').fadeIn();
+				}, 400);
 			}
 		});
 	});

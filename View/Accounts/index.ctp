@@ -5,17 +5,7 @@
 	</div>
 </div>
 
-<?php 
-	echo $this->Html->link(
-		'<span class="glyphicon glyphicon-plus"></span> Add Account',
-		array('controller' => 'accounts', 'action' => 'add'), 
-		array('class' => 'btn btn-default', 'escape' => false)
-	);
-?>
-
 <script>
-	$(document).ready(function() {
-
 		$.ajax({
 			dataType: "html",
 			type: "POST",
@@ -28,14 +18,29 @@
 					$("#accounts").html('<div class="error">Sorry, no accounts :(</div>');
 				}
 				else {
-					$("#accounts").hide().html(data).slideDown();
+					$("#accounts").hide().html(data);
 				}
-
+				
 				$('.delete-account').click(function() {
-					return confirm('Are you sure you want to delete this account?');
+					  return confirm('Are you sure you want to delete this account?');
 				});
+			},
+			complete: function (data) {
+						
+				var $button = $('<?php 
+					echo $this->Html->link(
+						'<span class="glyphicon glyphicon-plus"></span> Add Account',
+						array('controller' => 'accounts', 'action' => 'add'), 
+						array('class' => 'btn btn-primary invisible', 'escape' => false)
+					);
+				?>');
+
+				$("#accounts").append($button);
+				$("#accounts").slideDown(400);
+
+				setTimeout(function(){
+					$button.hide().removeClass('invisible').fadeIn();
+				}, 400);
 			}
 		});
-		
-	});
 </script>

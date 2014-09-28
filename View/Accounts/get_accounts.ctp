@@ -46,3 +46,9 @@
 		<th colspan=2>&nbsp;</th>
 	</tr>
 </table>
+
+<script>
+	$('.delete-account').click(function() {
+		return confirm('Are you sure you want to delete this account?');
+	});
+</script>
