@@ -1,36 +1,10 @@
 <h1>Tags</h1>
 
-	<table class="table table-hover">
-<tr>
-	<th>Name</th>
-	<th>Description</th>
-	<th colspan=2>Actions</th>
-</tr>
-<?php foreach ($data as $tag): ?>
-	<tr>
-		<td><?php echo $tag['Tag']['name']; ?></td>
-		<td><?php echo $tag['Tag']['description']; ?></td>
-		<td class="action-column">
-			<?php 
-				echo $this->Form->postButton(
-					'<span class="glyphicon glyphicon-pencil"></span>', 
-					array('action' => 'edit', $tag['Tag']['id']), 
-					array('class' => 'btn btn-warning btn-xs')
-				); 
-			?>
-		</td>
-		<td class="action-column">
-			<?php 
-					echo $this->Form->postButton(
-						'<span class="glyphicon glyphicon-remove"></span>',
-						array('action' => 'delete', $tag['Tag']['id']),
-						array('class' => 'btn btn-danger btn-xs delete-tag')
-					);
-				?>
-		 </td>
-	</tr>
-<?php endforeach; ?>
-</table>
+<div id="tags">
+	<div class="loading-icon">
+		<img src="<?php echo $this->webroot; ?>/img/loading.gif" alt="loading" height="32" width="32"/>
+	</div>
+</div>
 
 <?php 
 	echo $this->Html->link(
@@ -41,9 +15,24 @@
 ?>
 
 <script>
-	$(document).ready(function() {
-		$('.delete-tag').click(function() {
-				return confirm('Are you sure you want to delete "<?php echo $tag['Tag']['name']; ?>"?');
+	$.ajax({
+			dataType: "html",
+			type: "POST",
+			cache: false,
+			evalScripts: true,
+			url: '<?php echo Router::url(array('controller'=>'tags','action'=>'get_tags'));?>',
+			data: ({type:'original'}),
+			success: function (data, textStatus){
+				if (data.length == 0) {
+					$("#tags").html('<div class="error">Sorry, no tags :(</div>');
+				}
+				else {
+					$("#tags").html(data);
+				}
+
+				$('.delete-tag').click(function() {
+					return confirm('Are you sure you want to delete this tag?');
+				});
+			}
 		});
-	});
 </script>

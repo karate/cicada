@@ -2,7 +2,7 @@
 
 class ActionsController extends AppController {
 	public $helpers = array ('Html', 'Session');
-	public $components = array('Session');
+	public $components = array('Session', 'RequestHandler');
 
 	public function index() {
 		$this->redirect(array('controller' => 'actions', 'action' => 'view'));
@@ -79,6 +79,22 @@ class ActionsController extends AppController {
 	}
 
 	public function view($account = NULL) {
+		/* 
+			Prints default layout (header, footer etc).
+			Actual data are fetched via Ajax (see get_actions)
+		*/
+	}
+
+	public function get_actions($limit = null, $tag = null) {
+        $actions = $this->_get_transactions();
+		$this->set('actions', $actions);
+	}
+
+
+	/* * * * * * * * * * * * *
+	 *   PRIVATE FUNCTIONS   *
+	 * * * * * * * * * * * * */
+	private function _get_transactions($account = null, $tag = null) {
 		$query = array(
 			'fields' => array('Type.id', 'Type.description', 'Account.description', 'Account.balance', 'Action.*',),
 			'joins' => array(
@@ -93,27 +109,20 @@ class ActionsController extends AppController {
 					'alias' => 'Account',
 					'type' => 'left',
 					'conditions'=> array('Action.account = Account.id'),
-				),/*
-				array(
-					'table' => 'action_tags',
-					'alias' => 'ActionTag',
-					'type' => 'left',
-					'conditions'=> array('ActionTag.action_id = Action.id'),
 				),
-				array(
-					'table' => 'tags',
-					'alias' => 'Tag',
-					'type' => 'left',
-					'conditions'=> array('Tag.id = ActionTag.tag_id'),
-				),*/
 			),
-			'order' => array('Action.date DESC')
+			'order' => array('Action.date DESC'),
 		);
+
 		if (!is_null($account)) {
 			$query['conditions'] = array('Action.account' => $account);
 			$this->loadModel('Account');
 			$account = $this->Account->find('first', array('conditions' => array('Account.id' => $account)));
 			$this->set('account', $account['Account']);
+		}
+
+		if (!is_null($tag)) {
+			// Implement filter by tag...
 		}
 
 		$actions = $this->Action->find('all', $query);
@@ -139,7 +148,7 @@ class ActionsController extends AppController {
 					),
 				),
 				'conditions' => array(
-					'ActionTags.action_id' => $action_id,
+					'ActionTags.action_id' => 1234,
 				),
 			);
 
@@ -149,19 +158,9 @@ class ActionsController extends AppController {
 			}
 
 		}
-		$this->set('actions', $actions);
-	}
-
-	private function get_transactions($account = NULL) {
-		
-
 		return $actions;
 	}
 
-
-	/* * * * * * * * * * * * *
-	 *   PRIVATE FUNCTIONS   *
-	 * * * * * * * * * * * * */
 	private function _delete_transaction($transaction_id) {
 		// Load transaction details
 		$action = $this->Action->find('first', array('conditions' => array('Action.id' => $transaction_id)));

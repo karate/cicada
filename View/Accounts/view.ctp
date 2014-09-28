@@ -77,6 +77,5 @@
 	// This will get the first returned node in the jQuery collection.
 
 	var myNewChart = new Chart(ctx).Line(data, options);
-	myNewChart.defaults.multiTooltipTemplate = "as";
 
 </script>

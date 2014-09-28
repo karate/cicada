@@ -25,7 +25,12 @@ table.cake-sql-log {
 	border-radius: 10px;
 }
 
-table.transactions span.tag {
+div.loading-icon {
+	width: 32px;
+	margin: auto;
+}
+
+#transactions table span.tag {
 	margin: 2px;
 	padding: 2px 5px;
 	border: 1px #ccc solid;

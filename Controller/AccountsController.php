@@ -2,12 +2,18 @@
 
 class AccountsController extends AppController {
 	public $helpers = array ('Html', 'Form', 'Session');
-	public $components = array('Session');
+	public $components = array('Session', 'RequestHandler');
 
 	public function index() {
-		$accounts = $this->Account->find('all');
+		/* 
+			Prints default layout (header, footer etc).
+			Actual data are fetched via Ajax (see get_accounts)
+		*/
+	}
 
-		$this->set('data', $accounts);
+	public function get_accounts() {
+	    $accounts = $this->Account->find('all');
+		$this->set('accounts', $accounts);
 	}
 
 	public function add() {
@@ -67,9 +73,6 @@ class AccountsController extends AppController {
 	}
 
 	public function view($id = NULL) {
-		/*if (!$id) {
-			throw new NotFoundException(__('Invalid account'));
-		}*/
 
 		if (!is_null($id)) {
 			$account = $this->Account->findById($id);

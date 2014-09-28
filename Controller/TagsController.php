@@ -1,8 +1,15 @@
 <?php
 class TagsController extends AppController{
-	public $components = array('Session');
+	public $components = array('Session', 'RequestHandler');
 
 	public function index() {
+		/* 
+			Prints default layout (header, footer etc).
+			Actual data are fetched via Ajax (see get_tags)
+		*/
+	}
+
+	public function get_tags() {
 		$tags = $this->Tag->find('all');
 		$this->set('data', $tags);
 	}

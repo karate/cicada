@@ -1,48 +1,11 @@
 <?php
 	$total_balance = 0;
 ?>
-
-<table class="table table-hover">
-<tr>
-	<th>Accounts (<?php echo count($data); ?>)</th>
-	<th>Balance</th>
-	<th colspan=2>Actions</th>
-</tr>
-<?php foreach ($data as $account): ?>
-	<?php $total_balance += $account['Account']['balance']; ?>
-	<tr>
-		<td>
-			<?php 
-				echo $this->Html->link($account['Account']['description'],'/accounts/view/'.$account['Account']['id']);
-			?>
-		</td>
-		<td><?php echo $account['Account']['balance']; ?></td>
-		<td class="action-column">
-			<?php 
-				echo $this->Form->postButton(
-					'<span class="glyphicon glyphicon-pencil"></span>', 
-					array('action' => 'edit', $account['Account']['id']), 
-					array('class' => 'btn btn-warning btn-xs')
-				); 
-			?>
-		</td>
-		<td class="action-column">
-			<?php 
-				 echo $this->Form->postButton(
-					'<span class="glyphicon glyphicon-remove"></span>',
-					array('action' => 'delete', $account['Account']['id']),
-					array('class' => 'btn btn-danger btn-xs delete-account')
-				);
-			 ?>
-		 </td>
-	</tr>
-<?php endforeach; ?>
-	<tr>
-		<th>Total</th>
-		<th><?php echo $total_balance; ?></th>
-		<th colspan=2>&nbsp;</th>
-	</tr>
-</table>
+<div id="accounts">
+	<div class="loading-icon">
+		<img src="<?php echo $this->webroot; ?>/img/loading.gif" alt="loading" height="32" width="32"/>
+	</div>
+</div>
 
 <?php 
 	echo $this->Html->link(
@@ -54,8 +17,27 @@
 
 <script>
 	$(document).ready(function() {
-		$('.delete-account').click(function() {
-			return confirm('<?php echo 'Are you sure you want to delete "' . $account['Account']['description'] . '" account?' ?>');
+
+		$.ajax({
+			dataType: "html",
+			type: "POST",
+			cache: false,
+			evalScripts: true,
+			url: '<?php echo Router::url(array('controller'=>'accounts','action'=>'get_accounts'));?>',
+			data: ({type:'original'}),
+			success: function (data, textStatus){
+				if (data.length == 0) {
+					$("#accounts").html('<div class="error">Sorry, no accounts :(</div>');
+				}
+				else {
+					$("#accounts").html(data);
+				}
+
+				$('.delete-account').click(function() {
+					return confirm('Are you sure you want to delete this account?');
+				});
+			}
 		});
+		
 	});
 </script>
