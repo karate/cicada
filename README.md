@@ -9,10 +9,11 @@ For suggestions, ideas, comments etc, contact @karate and @godfath3r.
 
 ### How to use it
 
-- Download and set-up the latest 2.x version of cakephp 2.5.4
-- Go to /app folder and pull cicada:
+- Download and set-up the latest 2.x version of cakephp which is 2.5.4
+- Go to cake-php folder and pull cicada:
 
 ```
-$ cd <cakephp-folder>/app
-$ git clone https://github.com/karate/cicada.git
+$ cd /var/www/<cakephp-folder>
+$ rm -r app/
+$ git clone https://github.com/karate/cicada.git app
 ```
