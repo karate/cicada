@@ -1,6 +1,8 @@
 <?php
 	$total_balance = 0;
 ?>
+
+<h1>Accounts</h1>
 <div id="accounts">
 	<div class="loading-icon">
 		<img src="<?php echo $this->webroot; ?>/img/loading.gif" alt="loading" height="32" width="32"/>

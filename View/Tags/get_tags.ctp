@@ -1,3 +1,9 @@
+<?php
+	if(empty($tags)) {
+		return;
+	}
+?>
+
 <table class="table table-hover">
 <tr>
 	<th>Name</th>

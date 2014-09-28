@@ -18,11 +18,15 @@
 				array('action' => 'edit', $data['id']),
 				array('class' => 'btn btn-default', 'escape' => false));
 
-			echo $this->Html->link(
+			
+			// Filtering transactions by account is no longer working 
+			// since data in actions/view/ are fetched with Ajax
+
+			/*echo $this->Html->link(
 				'<span class="glyphicon glyphicon-list"></span> View Transactions', 
 				array('controller' => 'actions', 'action' => 'view/' . $data['id']),
 				array('class' => 'btn btn-default', 'escape' => false)
-			);
+			);*/
 		?>
 		
 	</div>

@@ -4,9 +4,10 @@
 	}
 	$total_balance = 0;
 ?>
+
 <table class="table table-hover">
 <tr>
-	<th>Accounts (<?php echo count($accounts); ?>)</th>
+	<th>Account name</th>
 	<th>Balance</th>
 	<th colspan=2>Actions</th>
 </tr>
