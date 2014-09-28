@@ -1,5 +1,5 @@
 <?php 
-	if(empty($actions)) {
+	if(empty($data)) {
 		return;
 	}
 ?>
@@ -14,7 +14,7 @@
 		<th>Date / Time</th>
 		<th colspan=2>Actions</th>
 	</tr>
-	<?php foreach ($actions as $action): ?>
+	<?php foreach ($data as $action): ?>
 		<tr>
 			<td><?php echo $action['Type']['description']; ?></td>
 			<td><?php echo $this->Html->link($action['Account']['description'], '/accounts/view/' . $action['Action']['account']); ?></td>

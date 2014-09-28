@@ -1,5 +1,5 @@
 <?php
-	if(empty($tags)) {
+	if(empty($data)) {
 		return;
 	}
 ?>

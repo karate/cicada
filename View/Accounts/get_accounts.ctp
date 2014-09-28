@@ -1,5 +1,5 @@
 <?php
-	if(empty($accounts)) {
+	if(empty($data)) {
 		return;
 	}
 	$total_balance = 0;
@@ -11,7 +11,7 @@
 	<th>Balance</th>
 	<th colspan=2>Actions</th>
 </tr>
-<?php foreach ($accounts as $account): ?>
+<?php foreach ($data as $account): ?>
 	<?php $total_balance += $account['Account']['balance']; ?>
 	<tr>
 		<td>

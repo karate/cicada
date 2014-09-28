@@ -13,7 +13,7 @@ class AccountsController extends AppController {
 
 	public function get_accounts() {
 	    $accounts = $this->Account->find('all');
-		$this->set('accounts', $accounts);
+		$this->set('data', $accounts);
 	}
 
 	public function add() {

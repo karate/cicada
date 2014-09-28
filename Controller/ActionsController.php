@@ -87,7 +87,7 @@ class ActionsController extends AppController {
 
 	public function get_actions($account = null, $limit = null, $tag = null) {
         $actions = $this->_get_transactions($account);
-		$this->set('actions', $actions);
+		$this->set('data', $actions);
 	}
 
 
