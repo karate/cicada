@@ -62,7 +62,13 @@
 		);
 
 
-		echo $this->Form->end(array('label' => 'Save Transaction', 'class' => 'btn btn-default'));
+		echo $this->Html->link(
+			'Cancel', 
+			array('action' => 'view'), 
+			array('class' => 'btn btn-default col-xs-4 col-xs-push-8')
+		);
+		
+		echo $this->Form->end(array('label' => 'Save Transaction', 'class' => 'btn btn-success col-xs-7 col-xs-pull-4'));
 			
 
 		echo $this->Html->css('bootstrap-datepicker');

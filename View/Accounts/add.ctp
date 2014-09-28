@@ -24,6 +24,12 @@
 				'type' => 'text',
 			)
 		);
-		echo $this->Form->end(array('label' => 'Save Account', 'class' => 'btn btn-default'));
+		echo $this->Html->link(
+			'Cancel', 
+			array('action' => 'index'),
+			array('class' => 'btn btn-default col-xs-4 col-xs-push-8')
+		);
+		
+		echo $this->Form->end(array('label' => 'Save Account', 'class' => 'btn btn-success col-xs-7 col-xs-pull-4'));
 	?>
 </div>
