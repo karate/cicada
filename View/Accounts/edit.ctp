@@ -2,6 +2,8 @@
 <div class="row">
 	<?php
 		echo $this->Form->create('Account', array('class' => 'form col-md-3'));
+
+		// Description
 		echo $this->Form->input(
 			'description', 
 			array(
@@ -9,6 +11,8 @@
 				'class' => 'form-control',
 			)
 		);
+
+		// IBAN
 		echo $this->Form->input(
 			'iban', 
 			array(
@@ -16,6 +20,8 @@
 				'class' => 'form-control',
 			)
 		);
+
+		// Balance
 		echo $this->Form->input(
 			'balance',
 			array(
@@ -25,12 +31,17 @@
 				'type' => 'text',
 			)
 		);
-				echo $this->Html->link(
-			'Cancel', 
-			array('action' => 'index'),
-			array('class' => 'btn btn-default col-xs-4 col-xs-push-8')
-		);
+
+		// Submit
+		echo $this->Form->submit('Save Account', array('class' => 'btn btn-success col-xs-7'));
 		
-		echo $this->Form->end(array('label' => 'Save Account', 'class' => 'btn btn-success col-xs-7 col-xs-pull-4'));
+		// Cancel
+		echo $this->Html->link(
+			'Cancel', 
+			array('action' => 'index'), 
+			array('class' => 'btn btn-default col-xs-4 col-xs-offset-1')
+		);
+
+		echo $this->Form->end();
 	?>
 </div>

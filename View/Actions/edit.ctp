@@ -3,26 +3,29 @@
 	<?php
 		echo $this->Form->create('Action', array('class' => 'form col-md-3'));
 
+		// Action type
 		echo $this->Form->input(
 			'type', 
 			array(
 				'type' => 'select',
-				'options'=>$action_type, 
+				'options'=> $action_type, 
 				'div' => array('class' => 'form-group'), 
 				'class' => 'form-control'
 			)
 		);
 		
+		// Account
 		echo $this->Form->input(
 			'account', 
 			array(
 				'type' => 'select',
-				'options'=>$accounts, 
+				'options'=> $accounts, 
 				'div' => array('class' => 'form-group'), 
 				'class' => 'form-control'
 			)
 		);
 
+		// Ammount
 		echo $this->Form->input(
 			'ammount', 
 			array(
@@ -32,6 +35,7 @@
 			)
 		);
 
+		// Transaction description
 		echo $this->Form->input(
 			'description', 
 			array(
@@ -40,6 +44,7 @@
 			)
 		);
 		
+		// Tags
 		echo $this->Form->input(
 			'tags', 
 			array(
@@ -51,6 +56,7 @@
 			)
 		);
 
+		// Date
 		echo $this->Form->input(
 			'date', 
 			array(
@@ -61,13 +67,17 @@
 			)
 		);
 
+		// Submit
+		echo $this->Form->submit('Save Transaction', array('class' => 'btn btn-success col-xs-7'));
+		
+		// Cancel
 		echo $this->Html->link(
 			'Cancel', 
 			array('action' => 'view'), 
-			array('class' => 'btn btn-default col-xs-4 col-xs-push-8')
+			array('class' => 'btn btn-default col-xs-4 col-xs-offset-1')
 		);
-		
-		echo $this->Form->end(array('label' => 'Save Transaction', 'class' => 'btn btn-success col-xs-7 col-xs-pull-4'));
+
+		echo $this->Form->end();
 
 		echo $this->Html->css('bootstrap-datepicker');
 		echo $this->Html->script('datepicker');

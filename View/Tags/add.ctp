@@ -2,6 +2,8 @@
 <div class="row">
 	<?php
 		echo $this->Form->create('Tag', array('class' => 'form col-md-3'));
+
+		// Name
 		echo $this->Form->input(
 			'name', 
 			array(
@@ -9,6 +11,8 @@
 				'class' => 'form-control'
 			)
 		);
+
+		// Description
 		echo $this->Form->input(
 			'description', 
 			array(
@@ -16,12 +20,17 @@
 				'class' => 'form-control'
 			)
 		);
+
+		// Submit
+		echo $this->Form->submit('Save Tag', array('class' => 'btn btn-success col-xs-7'));
+		
+		// Cancel
 		echo $this->Html->link(
 			'Cancel', 
-			array('action' => 'index'),
-			array('class' => 'btn btn-default col-xs-4 col-xs-push-8')
+			array('action' => 'index'), 
+			array('class' => 'btn btn-default col-xs-4 col-xs-offset-1')
 		);
-		
-		echo $this->Form->end(array('label' => 'Save Tag', 'class' => 'btn btn-success col-xs-7 col-xs-pull-4'));
+
+		echo $this->Form->end();
 	?>
 </div>
