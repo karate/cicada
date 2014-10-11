@@ -33,8 +33,12 @@ class ActionsController extends AppController {
 			throw new MethodNotAllowedException();
 		}
 
-		$this->_delete_transaction($id);
-		return $this->redirect(array('action' => 'index'));
+		$this->autoRender = false;
+
+		if ($this->_delete_transaction($id)) {
+			return true;
+		}
+		return false;
 	}
 
 	public function edit($id = NULL) {
@@ -195,6 +199,11 @@ class ActionsController extends AppController {
 			$this->Session->setFlash(
 				__("Transaction has been deleted. New balance of $account_name is: $updated_balance")
 			);
+
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 

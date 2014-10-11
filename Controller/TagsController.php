@@ -53,10 +53,13 @@ class TagsController extends AppController{
 		if ($this->request->is('get')) {
 			throw new MethodNotAllowedException();
 		}
+		
+		$this->autoRender = false;
 
-		$this->Tag->delete($id);
-
-		return $this->redirect(array('action' => 'index'));
+		if ($this->Tag->delete($id)) {
+			return true;
+		}
+		return false;
 	}
 }
 

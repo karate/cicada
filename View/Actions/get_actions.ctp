@@ -15,7 +15,7 @@
 		<th colspan=2>Actions</th>
 	</tr>
 	<?php foreach ($data as $action): ?>
-		<tr>
+		<tr class="action-row" data-action="<?php echo $action['Action']['id']; ?>">
 			<td><?php echo $action['Type']['description']; ?></td>
 			<td><?php echo $this->Html->link($action['Account']['description'], '/accounts/view/' . $action['Action']['account']); ?></td>
 			<td class="<?php echo ($action['Action']['ammount'] < 0) ? 'red' : ''; ?>"><?php echo $action['Action']['ammount']; ?></td>
@@ -31,24 +31,17 @@
 			<td><?php echo $this->Time->format('l, F j', $action['Action']['date']); ?></td>
 			<td class="action-column">
 				<?php 
-				// Do not allow edit in corrective transaction types
-					if ($action['Type']['id'] != '3') {
-						echo $this->Form->postButton(
-							'<span class="glyphicon glyphicon-pencil"></span>', 
-							array('action' => 'edit', $action['Action']['id']), 
-							array('class' => 'btn btn-warning btn-xs', )
-						);
-					}
-				?>
+				echo $this->Form->postButton(
+					'<span class="glyphicon glyphicon-pencil"></span>', 
+					array('action' => 'edit', $action['Action']['id']), 
+					array('class' => 'btn btn-warning btn-xs')
+				); 
+			?>
 			</td>
 			<td class="action-column">
-				<?php 
-					echo $this->Form->postButton(
-						'<span class="glyphicon glyphicon-remove"></span>',
-						array('action' => 'delete', $action['Action']['id']),
-						array('class' => 'btn btn-danger btn-xs delete-transaction')
-					);
-				?>
+				<button type="button" class="btn btn-danger btn-xs delete-action" data-action="<?php echo $action['Action']['id']; ?>">
+					<span class="glyphicon glyphicon-remove"></span>
+				</button>
 			</td>
 		</tr>
 
@@ -58,4 +51,31 @@
 		<tr><th>Total</th><th><?php echo $account['description']; ?></th><th><?php echo $account['balance']; ?><th><th colspan=2>&nbsp;</th></tr>
 	<?php endif; ?>
 
-	</table>
+</table>
+
+
+<?php 
+	echo $this->Html->link(
+		'<span class="glyphicon glyphicon-plus"></span> New Transaction',
+		array('controller' => 'actions', 'action' => 'add'),
+		array('class' => 'btn btn-primary invisible', 'escape' => false, 'id' => 'add-action')
+	);
+?>
+
+<script>	
+$('.delete-action').click(function() {
+	  var conf = confirm('Are you sure you want to delete this transaction?');
+	  if (conf == true) {
+	  	var action = $(this).data('action');
+	  	$('tr.action-row[data-action='+action+']').fadeOut(function() {
+		    	console.error('deleting action ' + action);
+		    	$.ajax({
+					dataType: "html",
+					type: "POST",
+					cache: false,
+					url: '<?php echo Router::url(array('controller'=>'actions','action'=>'delete'));?>/' + action,
+		  		});
+			});
+		}
+});
+</script>

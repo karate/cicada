@@ -39,13 +39,12 @@ class AccountsController extends AppController {
 			$this->Action->delete($action['Action']['id']);
 		}
 
-		if ($this->Account->delete($id)) {
-			$this->Session->setFlash(
-				__('Account has been deleted.')
-			);
-			return $this->redirect(array('action' => 'index'));
-		}
+		$this->autoRender = false;
 
+		if ($this->Account->delete($id)) {
+			return true;
+		}
+		return false;
 	}
 
 	public function edit($id = NULL) {
