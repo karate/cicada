@@ -1,47 +1,49 @@
-<?php
-	if(empty($data)) {
-		return;
-	}
+<?php if(empty($data)): ?>
+
+	<div class="alert alert-warning">Sorry, no accounts :(</div>
+
+<?php else:
 	$total_balance = 0;
 ?>
 
-<table class="table table-hover">
-<tr>
-	<th>Account name</th>
-	<th>Balance</th>
-	<th colspan=2>Actions</th>
-</tr>
-<?php foreach ($data as $account): ?>
-	<?php $total_balance += $account['Account']['balance']; ?>
-	<tr class="account-row" data-account="<?php echo $account['Account']['id']; ?>">
-		<td>
-			<?php 
-				echo $this->Html->link($account['Account']['description'],'/accounts/view/'.$account['Account']['id']);
-			?>
-		</td>
-		<td><?php echo $account['Account']['balance']; ?></td>
-		<td class="action-column">
-			<?php 
-				echo $this->Form->postButton(
-					'<span class="glyphicon glyphicon-pencil"></span>', 
-					array('action' => 'edit', $account['Account']['id']), 
-					array('class' => 'btn btn-warning btn-xs')
-				); 
-			?>
-		</td>
-		<td class="action-column">
-			<button type="button" class="btn btn-danger btn-xs delete-account" data-account="<?php echo $account['Account']['id']; ?>">
-				<span class="glyphicon glyphicon-remove"></span>
-			</button>
-		 </td>
-	</tr>
-<?php endforeach; ?>
+	<table class="table table-hover">
 	<tr>
-		<th>Total</th>
-		<th><?php echo $total_balance; ?></th>
-		<th colspan=2>&nbsp;</th>
+		<th>Account name</th>
+		<th>Balance</th>
+		<th colspan=2>Actions</th>
 	</tr>
-</table>
+	<?php foreach ($data as $account): ?>
+		<?php $total_balance += $account['Account']['balance']; ?>
+		<tr class="account-row" data-account="<?php echo $account['Account']['id']; ?>">
+			<td>
+				<?php 
+					echo $this->Html->link($account['Account']['description'],'/accounts/view/'.$account['Account']['id']);
+				?>
+			</td>
+			<td><?php echo $account['Account']['balance']; ?></td>
+			<td class="action-column">
+				<?php 
+					echo $this->Form->postButton(
+						'<span class="glyphicon glyphicon-pencil"></span>', 
+						array('action' => 'edit', $account['Account']['id']), 
+						array('class' => 'btn btn-warning btn-xs')
+					); 
+				?>
+			</td>
+			<td class="action-column">
+				<button type="button" class="btn btn-danger btn-xs delete-account" data-account="<?php echo $account['Account']['id']; ?>">
+					<span class="glyphicon glyphicon-remove"></span>
+				</button>
+			 </td>
+		</tr>
+	<?php endforeach; ?>
+		<tr>
+			<th>Total</th>
+			<th><?php echo $total_balance; ?></th>
+			<th colspan=2>&nbsp;</th>
+		</tr>
+	</table>
+<?php endif; ?>
 
 <?php 
 	echo $this->Html->link(

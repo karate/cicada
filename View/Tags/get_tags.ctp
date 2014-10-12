@@ -1,36 +1,38 @@
-<?php
-	if(empty($data)) {
-		return;
-	}
-?>
+<?php if(empty($data)): ?>
 
-<table class="table table-hover">
-<tr>
-	<th>Name</th>
-	<th>Description</th>
-	<th colspan=2>Actions</th>
-</tr>
-<?php foreach ($data as $tag): ?>
-	<tr class="tag-row" data-tag="<?php echo $tag['Tag']['id']; ?>">
-		<td><?php echo $tag['Tag']['name']; ?></td>
-		<td><?php echo $tag['Tag']['description']; ?></td>
-		<td class="action-column">
-			<?php 
-				echo $this->Form->postButton(
-					'<span class="glyphicon glyphicon-pencil"></span>', 
-					array('action' => 'edit', $tag['Tag']['id']), 
-					array('class' => 'btn btn-warning btn-xs')
-				); 
-			?>
-		</td>
-		<td class="action-column">
-			<button type="button" class="btn btn-danger btn-xs delete-tag" data-tag="<?php echo $tag['Tag']['id']; ?>">
-				<span class="glyphicon glyphicon-remove"></span>
-			</button>
-		 </td>
+	<div class="alert alert-warning">Sorry, no tags :(</div>
+
+<?php else: ?>
+
+	<table class="table table-hover">
+	<tr>
+		<th>Name</th>
+		<th>Description</th>
+		<th colspan=2>Actions</th>
 	</tr>
-<?php endforeach; ?>
-</table>
+	<?php foreach ($data as $tag): ?>
+		<tr class="tag-row" data-tag="<?php echo $tag['Tag']['id']; ?>">
+			<td><?php echo $tag['Tag']['name']; ?></td>
+			<td><?php echo $tag['Tag']['description']; ?></td>
+			<td class="action-column">
+				<?php 
+					echo $this->Form->postButton(
+						'<span class="glyphicon glyphicon-pencil"></span>', 
+						array('action' => 'edit', $tag['Tag']['id']), 
+						array('class' => 'btn btn-warning btn-xs')
+					); 
+				?>
+			</td>
+			<td class="action-column">
+				<button type="button" class="btn btn-danger btn-xs delete-tag" data-tag="<?php echo $tag['Tag']['id']; ?>">
+					<span class="glyphicon glyphicon-remove"></span>
+				</button>
+			 </td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+
+<?php endif; ?>
 
 <?php 
 	echo $this->Html->link(

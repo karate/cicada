@@ -14,12 +14,7 @@
 		url: '<?php echo Router::url(array('controller'=>'actions','action'=>'get_actions'));?>',
 		data: ({type:'original'}),
 		success: function (data, textStatus){
-			if (data.length == 0) {
-				$("#transactions").html('<div class="error">Sorry, no transactions :(</div>');
-			}
-			else {
-				$("#transactions").hide().html(data);
-			}
+			$("#transactions").hide().html(data);
 		},
 		complete: function (data) {
 			$("#transactions").slideDown(400);
